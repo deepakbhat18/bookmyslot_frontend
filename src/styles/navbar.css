@@ -1,0 +1,24 @@
+.navbar {
+  height: 60px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.nav-links span {
+  margin-left: 20px;
+  cursor: pointer;
+  color: #444;
+}

@@ -10,24 +10,24 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.08);
+
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea, #764ba2, #e53e3e);
 
-  -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
   gap: 8px;
+ 
 }
 
 .logo::after {
-  content: '🎯';
+  
   font-size: 18px;
-  animation: spin 8s linear infinite;
+
 }
 
 @keyframes spin {

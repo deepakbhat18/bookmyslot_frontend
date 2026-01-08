@@ -12,7 +12,7 @@ export default function Navbar() {
   };
   return (
     <nav className="navbar">
-      <h2 className="logo">BookMySlot</h2>
+      <h2 className="logo">BookMySlot 🎯</h2>
 
  <div className="nav-links">
   <a href="/">Events</a>

@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../api/config";
 import "../styles/Register.css";
 
 export default function Register() {
-  const [step, setStep] = useState("REGISTER"); // REGISTER | OTP
+  const [step, setStep] = useState("REGISTER");
   const [message, setMessage] = useState("");
 
   const [form, setForm] = useState({
@@ -20,7 +20,6 @@ export default function Register() {
   const handleRegister = async () => {
     setMessage("");
 
-    // 🔒 Frontend validations
     if (!form.name || !form.email || !form.password) {
       setMessage("All required fields must be filled");
       return;

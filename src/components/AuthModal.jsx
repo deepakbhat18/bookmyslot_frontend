@@ -1,5 +1,4 @@
 import "../styles/AuthModal.css";
-
 export default function AuthModal({ onClose }) {
   return (
     <div className="modal-backdrop">

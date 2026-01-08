@@ -321,7 +321,6 @@
   }
 }
 
-/* Animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -345,7 +344,7 @@
 .feed-container > *:nth-child(5) { animation-delay: 0.5s; }
 .feed-container > *:nth-child(6) { animation-delay: 0.6s; }
 
-/* View Toggle */
+
 .view-toggle {
   display: flex;
   gap: 8px;
@@ -373,7 +372,6 @@
   box-shadow: 0 4px 8px rgba(108, 92, 231, 0.2);
 }
 
-/* List View */
 .feed-container.list-view {
   grid-template-columns: 1fr;
 }
@@ -396,7 +394,7 @@
   }
 }
 
-/* Stats */
+
 .feed-stats {
   display: flex;
   gap: 16px;

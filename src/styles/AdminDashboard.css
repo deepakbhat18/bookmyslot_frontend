@@ -1,0 +1,53 @@
+.admin-dashboard {
+  min-height: 100vh;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #c9ccce, #e2eaec, #ade7ff);
+  color: white;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.admin-subtitle {
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 50px;
+}
+
+.admin-cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.admin-card {
+  width: 320px;
+  padding: 30px;
+  border-radius: 14px;
+  background: rgba(134, 205, 207, 0.993);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgb(253, 207, 2);
+}
+
+.admin-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.admin-card h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.admin-card p {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.5;
+}

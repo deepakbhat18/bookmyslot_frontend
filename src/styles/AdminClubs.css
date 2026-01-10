@@ -1,0 +1,101 @@
+.admin-clubs {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  min-height: 100vh;
+}
+
+.admin-clubs h1,
+.admin-clubs h2 {
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* ---------- CREATE CLUB FORM ---------- */
+.club-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.club-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+}
+
+.club-form button {
+  padding: 10px 16px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.club-form button:hover {
+  background: #4338ca;
+}
+
+/* ---------- TABLE ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background: #eef2ff;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: 600;
+  color: #333;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  margin-right: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+button.info {
+  background: #0ea5e9;
+  color: white;
+}
+
+button.success {
+  background: #22c55e;
+  color: white;
+}
+
+button.danger {
+  background: #ef4444;
+  color: white;
+}
+
+button.secondary {
+  background: #64748b;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}

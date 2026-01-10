@@ -12,20 +12,36 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setMessage("");
 
     try {
       const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include",
+        credentials: "include", // 🔴 REQUIRED for session
         body: JSON.stringify({ email, password }),
       });
 
-      if (res.ok) {
-        navigate("/");
-      } else {
-        setMessage("Invalid email or password");
+      const result = await res.json();
+
+      if (!res.ok) {
+        setMessage(result.message || "Invalid email or password");
+        return;
       }
+
+      const user = result.data;
+
+      // ✅ ROLE-BASED REDIRECT
+      if (user.role === "ADMIN") {
+        navigate("/admin");
+      } else if (user.role === "CLUB") {
+        navigate("/club/dashboard");
+      } else if (user.role === "TEACHER") {
+        navigate("/teacher/dashboard");
+      } else {
+        navigate("/"); // STUDENT
+      }
+
     } catch (err) {
       setMessage("Server error");
     }
@@ -56,12 +72,10 @@ export default function Login() {
 
         {message && <p className="message error">{message}</p>}
 
-      
         <div className="auth-links">
           <span onClick={() => navigate("/forgot-password")}>
             Forgot Password?
           </span>
-
           <span onClick={() => navigate("/reset-password")}>
             Reset Password
           </span>

@@ -1,0 +1,45 @@
+.club-analytics {
+  padding: 30px;
+}
+
+.club-analytics h2 {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+th {
+  background: #f4f6f8;
+}
+
+.status.published {
+  color: green;
+  font-weight: bold;
+}
+
+.status.cancelled {
+  color: red;
+}
+
+button {
+  padding: 6px 12px;
+  background: #1d2671;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #0f1550;
+}

@@ -1,0 +1,35 @@
+.club-dashboard {
+  padding: 30px;
+}
+
+.club-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.club-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.club-tabs button {
+  padding: 10px 18px;
+  border: none;
+  background: #eaeaea;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.club-tabs button.active {
+  background: #1d2671;
+  color: white;
+}
+
+.club-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}

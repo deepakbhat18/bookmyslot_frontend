@@ -1,0 +1,81 @@
+.admin-clubs {
+  padding: 30px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-clubs h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #96a0ff;
+}
+
+.admin-clubs h3 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.admin-clubs table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.admin-clubs thead {
+  background: #9fa6eb;
+  color: white;
+}
+
+.admin-clubs th,
+.admin-clubs td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.admin-clubs tbody tr:hover {
+  background: #f5f7ff;
+}
+
+
+.admin-clubs button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.admin-clubs button:active {
+  transform: scale(0.97);
+}
+
+.admin-clubs button.approve {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.admin-clubs button.reject {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.admin-clubs button.approve:hover {
+  background-color: #27ae60;
+}
+
+.admin-clubs button.reject:hover {
+  background-color: #c0392b;
+}
+
+.admin-clubs p {
+  color: #555;
+  font-size: 15px;
+}
+
+.admin-clubs .error {
+  color: red;
+  margin-bottom: 10px;
+}

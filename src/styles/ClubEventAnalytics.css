@@ -1,0 +1,40 @@
+.event-analytics {
+  padding: 40px;
+}
+
+.event-analytics h2 {
+  margin-bottom: 5px;
+}
+
+.event-analytics .club {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.card span {
+  color: #777;
+}
+
+.card h3 {
+  margin-top: 10px;
+  font-size: 26px;
+}
+
+.card.revenue {
+  background: linear-gradient(135deg, #1d2671, #c33764);
+  color: white;
+}

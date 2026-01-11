@@ -68,7 +68,6 @@ export default function ClubEvents() {
     <div className="admin-clubs">
       <h2>Club Events</h2>
 
-      {/* ---------------- PUBLISHED EVENTS ---------------- */}
       <h3>Published Events</h3>
 
       {events.length === 0 && <p>No events yet</p>}
@@ -98,7 +97,6 @@ export default function ClubEvents() {
         </table>
       )}
 
-      {/* ---------------- PENDING EVENTS ---------------- */}
       <h3 style={{ marginTop: "40px" }}>Pending Events</h3>
 
       {message && <p style={{ color: "red" }}>{message}</p>}

@@ -2,7 +2,6 @@ import { useParams, Outlet } from "react-router-dom";
 import { useState } from "react";
 
 import ClubEvents from "./ClubEvents";
-import AddClubStaff from "./AddClubStaff";
 import ClubAnalytics from "./ClubAnalytics";
 
 import "../../styles/ClubDashboard.css";
@@ -25,12 +24,7 @@ export default function ClubDashboard() {
           Events
         </button>
 
-        <button
-          className={tab === "STAFF" ? "active" : ""}
-          onClick={() => setTab("STAFF")}
-        >
-          Club Staff
-        </button>
+     
 
         <button
           className={tab === "ANALYTICS" ? "active" : ""}
@@ -40,10 +34,10 @@ export default function ClubDashboard() {
         </button>
       </div>
 
-      {/* ---------- TAB CONTENT ---------- */}
+ 
       <div className="club-content">
         {tab === "EVENTS" && <ClubEvents />}
-        {tab === "STAFF" && <AddClubStaff />}
+    
         {tab === "ANALYTICS" && <ClubAnalytics />}
 
        

@@ -22,25 +22,18 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
 
-      const result = await res.json();
+const data = await res.json();
 
-      if (!res.ok) {
-        setMessage(result.message || "Invalid email or password");
-        return;
-      }
+sessionStorage.setItem("USER_ID", data.data.userId);
+sessionStorage.setItem("ROLE", data.data.role);
 
-      const user = result.data;
-
-      // ✅ ROLE-BASED REDIRECT
-      if (user.role === "ADMIN") {
-        navigate("/admin");
-      } else if (user.role === "CLUB") {
-        navigate("/club/dashboard");
-      } else if (user.role === "TEACHER") {
-        navigate("/teacher/dashboard");
-      } else {
-        navigate("/"); // STUDENT
-      }
+if (data.data.role === "ADMIN") {
+  navigate("/admin");
+} else if (data.data.role === "CLUB") {
+  navigate("/staff");
+} else {
+  navigate("/");
+}
 
     } catch (err) {
       setMessage("Server error");

@@ -1,0 +1,22 @@
+.staff-events {
+  padding: 30px;
+}
+
+.staff-events table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.staff-events th,
+.staff-events td {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.staff-events button {
+  padding: 6px 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}

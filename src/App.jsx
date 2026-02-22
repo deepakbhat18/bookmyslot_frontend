@@ -9,11 +9,22 @@ import ResetPassword from "./pages/ResetPassword";
 
 /* ADMIN */
 import AdminDashboard from "./admin/dashboard/AdminDashboard";
-
-/* ADMIN → CLUB */
 import AdminClubs from "./admin/club/AdminClubs";
 import ClubDashboard from "./admin/club/ClubDashboard";
-import ClubEventAnalytics from "./admin/club/ClubEventAnalytics";
+
+/* ADMIN → STAFF */
+/* ADMIN → STAFF */
+import AdminStaffList from "./admin/staff/AdminStaffList";
+import AdminStaffDetails from "./admin/staff/AdminStaffDetails";
+import AdminStaffAdd from "./admin/staff/AdminStaffAdd";
+
+
+/* CLUB STAFF */
+import StaffDashboard from "./staff/StaffDashboard";
+import CreateEvent from "./staff/CreateEvent";
+import EditEvent from "./staff/EditEvent";
+import UploadPoster from "./staff/UploadPoster";
+import ClubStaffEvents from "./staff/ClubStaffEvents";
 
 import "./styles/global.css";
 
@@ -23,24 +34,31 @@ export default function App() {
       <Navbar />
 
       <Routes>
-        {/* ---------- PUBLIC ---------- */}
+        {/* PUBLIC */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
-        {/* ---------- ADMIN ---------- */}
+        {/* ADMIN */}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/clubs" element={<AdminClubs />} />
+        <Route path="/admin/clubs/:clubId" element={<ClubDashboard />} />
 
-        {/* ---------- CLUB DASHBOARD (NESTED) ---------- */}
-        <Route path="/admin/clubs/:clubId" element={<ClubDashboard />}>
-          <Route
-            path="events/:eventId/analytics"
-            element={<ClubEventAnalytics />}
-          />
-        </Route>
+        {/* ADMIN → STAFF */}
+   {/* ADMIN → STAFF */}
+<Route path="/admin/staff" element={<AdminStaffList />} />
+<Route path="/admin/staff/add" element={<AdminStaffAdd />} />
+<Route path="/admin/staff/:staffId" element={<AdminStaffDetails />} />
+
+
+        {/* CLUB STAFF */}
+        <Route path="/staff" element={<StaffDashboard />} />
+        <Route path="/staff/events" element={<ClubStaffEvents />} />
+        <Route path="/staff/events/new" element={<CreateEvent />} />
+        <Route path="/staff/events/:eventId/edit" element={<EditEvent />} />
+        <Route path="/staff/events/:eventId/poster" element={<UploadPoster />} />
       </Routes>
     </BrowserRouter>
   );

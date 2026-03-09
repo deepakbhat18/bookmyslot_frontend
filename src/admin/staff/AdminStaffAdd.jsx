@@ -1,182 +1,3 @@
-// // import { useState } from "react";
-// // import { useParams } from "react-router-dom";
-// // import { API_BASE_URL } from "../../api/config";
-// // import "../../styles/AdminClubs.css";
-
-// // export default function AddClubStaff() {
-// //   const { clubId } = useParams();
-
-// //   const [form, setForm] = useState({
-// //     name: "",
-// //     email: "",
-// //     password: ""
-// //   });
-
-// //   const [message, setMessage] = useState("");
-// //   const [loading, setLoading] = useState(false);
-
-// //   const submit = async () => {
-// //     setMessage("");
-
-// //     if (!clubId) {
-// //       setMessage("Club ID missing");
-// //       return;
-// //     }
-
-// //     try {
-// //       setLoading(true);
-
-// //       const res = await fetch(`${API_BASE_URL}/api/admin/clubs/staff`, {
-// //         method: "POST",
-// //         headers: { "Content-Type": "application/json" },
-// //         credentials: "include",
-// //         body: JSON.stringify({
-// //           name: form.name,
-// //           email: form.email,
-// //           password: form.password,
-// //           clubId: Number(clubId) // ✅ GUARANTEED NUMBER
-// //         })
-// //       });
-
-// //       const data = await res.json();
-
-// //       if (!res.ok) {
-// //         setMessage(data.message || "Failed to create staff");
-// //         return;
-// //       }
-
-// //       setMessage("✅ Club staff created successfully");
-// //       setForm({ name: "", email: "", password: "" });
-
-// //     } catch (err) {
-// //       setMessage("Server error");
-// //     } finally {
-// //       setLoading(false);
-// //     }
-// //   };
-
-// //   return (
-// //     <div className="admin-clubs">
-// //       <h2>Add Club Staff</h2>
-
-// //       <input
-// //         placeholder="Name"
-// //         value={form.name}
-// //         onChange={e => setForm({ ...form, name: e.target.value })}
-// //       />
-
-// //       <input
-// //         placeholder="Email"
-// //         value={form.email}
-// //         onChange={e => setForm({ ...form, email: e.target.value })}
-// //       />
-
-// //       <input
-// //         type="password"
-// //         placeholder="Password"
-// //         value={form.password}
-// //         onChange={e => setForm({ ...form, password: e.target.value })}
-// //       />
-
-// //       <button onClick={submit} disabled={loading}>
-// //         {loading ? "Creating..." : "Create Staff"}
-// //       </button>
-
-// //       {message && <p>{message}</p>}
-// //     </div>
-// //   );
-// // }
-// import { useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { API_BASE_URL } from "../../api/config";
-// import "../../styles/AdminClubs.css";
-
-// export default function AddClubStaff() {
-//   const { clubId } = useParams();
-
-//   const [form, setForm] = useState({
-//     name: "",
-//     email: "",
-//     password: ""
-//   });
-
-//   const [message, setMessage] = useState("");
-//   const [loading, setLoading] = useState(false);
-
-//   const submit = async () => {
-//     setMessage("");
-
-//     if (!clubId) {
-//       setMessage("Club ID missing");
-//       return;
-//     }
-
-//     try {
-//       setLoading(true);
-
-//       const res = await fetch(
-//         `${API_BASE_URL}/api/admin/clubs/staff`,
-//         {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           credentials: "include",
-//           body: JSON.stringify({
-//             name: form.name,
-//             email: form.email,
-//             password: form.password,
-//             clubId: Number(clubId)
-//           })
-//         }
-//       );
-
-//       const data = await res.json();
-
-//       if (!res.ok) {
-//         setMessage(data.message || "Failed to create staff");
-//         return;
-//       }
-
-//       setMessage("✅ Club staff created successfully");
-//       setForm({ name: "", email: "", password: "" });
-
-//     } catch (err) {
-//       setMessage("Server error");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="admin-clubs">
-//       <h2>Add Club Staff</h2>
-
-//       <input
-//         placeholder="Name"
-//         value={form.name}
-//         onChange={e => setForm({ ...form, name: e.target.value })}
-//       />
-
-//       <input
-//         placeholder="Email"
-//         value={form.email}
-//         onChange={e => setForm({ ...form, email: e.target.value })}
-//       />
-
-//       <input
-//         type="password"
-//         placeholder="Password"
-//         value={form.password}
-//         onChange={e => setForm({ ...form, password: e.target.value })}
-//       />
-
-//       <button onClick={submit} disabled={loading}>
-//         {loading ? "Creating..." : "Create Staff"}
-//       </button>
-
-//       {message && <p>{message}</p>}
-//     </div>
-//   );
-// }
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -185,78 +6,124 @@ import "../../styles/AdminStaff.css";
 
 export default function AdminStaffAdd() {
   const navigate = useNavigate();
-  const [clubs, setClubs] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    clubId: ""
-  });
-  const [message, setMessage] = useState("");
 
+  // Club model fields: id, name, email, status
+  const [clubs, setClubs] = useState([]);
+
+  // ClubStaffCreateRequest: name, email, password, clubId(Long)
+  const [form, setForm] = useState({ name: "", email: "", password: "", clubId: "" });
+  const [msg,  setMsg]  = useState({ text: "", type: "" });
+  const [loading, setLoading] = useState(false);
+
+  // GET /api/admin/clubs → raw List<Club>
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/admin/clubs`, {
-      credentials: "include"
-    })
-      .then(res => res.json())
-      .then(setClubs);
+    fetch(`${API_BASE_URL}/api/admin/clubs`, { credentials: "include" })
+      .then(r => r.json())
+      .then(d => setClubs(Array.isArray(d) ? d.filter(c => c.status === "ACTIVE") : []))
+      .catch(console.error);
   }, []);
 
+  // POST /api/admin/staff → ApiResponse<String>
+  // Backend blocks if club already has active staff
   const submit = async () => {
-    setMessage("");
-
-    const res = await fetch(`${API_BASE_URL}/api/admin/staff`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        ...form,
-        clubId: Number(form.clubId)
-      })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      setMessage(data.message || "Failed");
+    if (!form.name || !form.email || !form.password || !form.clubId) {
+      setMsg({ text: "All fields are required.", type: "error" });
       return;
     }
-
-    alert("Staff created & email sent");
-    navigate("/admin/staff");
+    setLoading(true);
+    setMsg({ text: "", type: "" });
+    try {
+      const res  = await fetch(`${API_BASE_URL}/api/admin/staff`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          name:     form.name,
+          email:    form.email,
+          password: form.password,
+          clubId:   Number(form.clubId),   // must be Long
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setMsg({ text: data.message || "Failed to create staff.", type: "error" });
+        return;
+      }
+      setMsg({ text: "✅ Staff created & credentials emailed successfully!", type: "ok" });
+      setTimeout(() => navigate("/admin/staff"), 1500);
+    } catch {
+      setMsg({ text: "Server error.", type: "error" });
+    } finally {
+      setLoading(false);
+    }
   };
 
+  const set = (f, v) => setForm(prev => ({ ...prev, [f]: v }));
+
   return (
-    <div className="admin-staff-form">
-      <h2>Add / Replace Club Staff</h2>
+    <div className="staff-page">
+      <div className="staff-header">
+        <div>
+          <button className="back-link" onClick={() => navigate("/admin/staff")}>← Staff List</button>
+          <h1>Add Club Staff</h1>
+          <p>Creates a staff account and emails credentials to them. One active staff per club allowed.</p>
+        </div>
+      </div>
 
-      <input
-        placeholder="Name"
-        onChange={e => setForm({ ...form, name: e.target.value })}
-      />
+      <div className="staff-form-card">
+        <div className="form-grid-2">
+          <div className="field">
+            <label>Full Name *</label>
+            <input
+              placeholder="e.g. Rahul Sharma"
+              value={form.name}
+              onChange={e => set("name", e.target.value)}
+            />
+          </div>
+          <div className="field">
+            <label>Email Address *</label>
+            <input
+              type="email"
+              placeholder="staff@college.edu"
+              value={form.email}
+              onChange={e => set("email", e.target.value)}
+            />
+          </div>
+          <div className="field">
+            <label>Temporary Password *</label>
+            <input
+              type="text"
+              placeholder="e.g. Welcome@2026"
+              value={form.password}
+              onChange={e => set("password", e.target.value)}
+            />
+            <small className="field-hint">Staff will receive this via email. Advise them to change it after login.</small>
+          </div>
+          <div className="field">
+            <label>Assign to Club *</label>
+            <select value={form.clubId} onChange={e => set("clubId", e.target.value)}>
+              <option value="">— Select Club —</option>
+              {clubs.map(c => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+            <small className="field-hint">Only active clubs with no current staff are shown.</small>
+          </div>
+        </div>
 
-      <input
-        placeholder="Email"
-        onChange={e => setForm({ ...form, email: e.target.value })}
-      />
+        {msg.text && (
+          <div className={`form-msg ${msg.type}`}>{msg.text}</div>
+        )}
 
-      <input
-        placeholder="Temporary Password"
-        onChange={e => setForm({ ...form, password: e.target.value })}
-      />
-
-      <select onChange={e => setForm({ ...form, clubId: e.target.value })}>
-        <option value="">Select Club</option>
-        {clubs.map(c => (
-          <option key={c.id} value={c.id}>
-            {c.name}
-          </option>
-        ))}
-      </select>
-
-      <button onClick={submit}>Create Staff</button>
-
-      {message && <p className="error">{message}</p>}
+        <div className="form-actions">
+          <button className="btn-cancel" onClick={() => navigate("/admin/staff")}>
+            Cancel
+          </button>
+          <button className="btn-submit" onClick={submit} disabled={loading}>
+            {loading ? "Creating…" : "Create Staff & Send Email"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+
+
 .auth-container {
   min-height: 100vh;
   display: flex;
@@ -8,86 +10,81 @@
 }
 
 .auth-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,.97);
   padding: 40px;
   width: 100%;
   max-width: 420px;
   border-radius: 24px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 50px rgba(0,0,0,.15);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  gap: 20px;
+  border: 1px solid rgba(255,255,255,.3);
 }
 
 .auth-card h2 {
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
-  margin-bottom: 8px;
-  background: linear-gradient(135deg, #df266d);
-  -webkit-text-fill-color: #000000;
-  
+  color: #1a202c;
+  -webkit-text-fill-color: #1a202c;
+}
+
+/* ✅ ADDED */
+.auth-sub {
+  text-align: center;
+  color: #64748b;
+  font-size: .9rem;
+  margin-top: -12px;
 }
 
 .auth-card input {
-  padding: 16px 20px;
-  font-size: 15px;
+  padding: 14px 18px;
+  font-size: .95rem;
   border: 2px solid #e2e8f0;
   border-radius: 12px;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8);
+  transition: border-color .2s, box-shadow .2s;
+  background: #fff;
 }
-
 .auth-card input:focus {
   outline: none;
   border-color: #667eea;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(102,126,234,.15);
 }
 
 .auth-card button {
-  padding: 16px;
-  background: linear-gradient(135deg, #b8bac2 0%, #764ba2 100%);
-  color: white;
+  padding: 14px;
+  background: linear-gradient(135deg,#667eea,#764ba2);
+  color: #fff;
   border: none;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  letter-spacing: 0.5px;
+  font-size: .95rem;
+  transition: opacity .2s;
 }
+.auth-card button:hover { opacity: .9; }
+.auth-card button:disabled { opacity: .55; cursor: not-allowed; }
 
-.auth-card button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+.message { text-align: center; font-size: .85rem; padding: 10px 14px; border-radius: 10px; font-weight: 500; }
+.message.success { background: rgba(72,187,120,.15); color: #38a169; }
+.message.error   { background: rgba(245,101,101,.15); color: #e53e3e; }
+
+.auth-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: .85rem;
+  color: #667eea;
 }
+.auth-links span { cursor: pointer; font-weight: 600; }
+.auth-links span:hover { text-decoration: underline; }
 
-.message {
-  text-align: center;
-  font-size: 14px;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 500;
-}
+.switch-auth { text-align: center; font-size: .85rem; color: #64748b; }
+.switch-auth span { color: #667eea; font-weight: 600; cursor: pointer; }
+.switch-auth span:hover { text-decoration: underline; }
 
-.message.success {
-  background: linear-gradient(135deg, rgba(72, 187, 120, 0.15), rgba(56, 161, 105, 0.1));
-  color: #38a169;
-}
-
-.message.error {
-  background: linear-gradient(135deg, rgba(245, 101, 101, 0.15), rgba(229, 62, 62, 0.1));
-  color: #e53e3e;
-}
-
-.otp-resend {
-  text-align: center;
-  margin-top: 10px;
-}
-
+.otp-resend { text-align: center; }
 .otp-resend button {
   background: transparent;
   border: none;
@@ -96,10 +93,6 @@
   font-weight: 600;
   padding: 8px 16px;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: background .2s;
 }
-
-.otp-resend button:hover {
-  background: rgba(102, 126, 234, 0.1);
-  transform: translateY(-2px);
-}
+.otp-resend button:hover { background: rgba(102,126,234,.1); }

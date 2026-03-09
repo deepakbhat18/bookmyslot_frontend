@@ -1,4 +1,4 @@
-.staff-dashboard {
+/* .staff-dashboard {
   padding: 40px;
 }
 
@@ -20,4 +20,37 @@
 .staff-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+} */
+
+
+.staff-dash { max-width: 860px; margin: 0 auto; padding: 36px 20px; }
+
+.dash-header { margin-bottom: 32px; }
+.dash-header h1 { font-size: 1.8rem; color: #1a202c; margin-bottom: 4px; }
+.dash-header p  { color: #64748b; }
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
 }
+
+.dash-card {
+  border-radius: 18px;
+  padding: 28px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+.dash-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+
+.dash-card-icon { font-size: 2rem; flex-shrink: 0; }
+.dash-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; color: inherit; }
+.dash-card p  { font-size: .83rem; opacity: .8; }
+
+.card-indigo { background: linear-gradient(135deg,#e0e7ff,#c7d2fe); color: #312e81; }
+.card-blue   { background: linear-gradient(135deg,#dbeafe,#bfdbfe); color: #1e3a8a; }
+.card-green  { background: linear-gradient(135deg,#dcfce7,#bbf7d0); color: #14532d; }

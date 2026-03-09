@@ -1,145 +1,177 @@
+
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { API_BASE_URL } from "../../api/config";
 import "../../styles/ClubEvents.css";
-export default function ClubEvents() {
-  const { clubId } = useParams();
 
-  const [events, setEvents] = useState([]);
-  const [pendingEvents, setPendingEvents] = useState([]);
-  const [message, setMessage] = useState("");
+export default function ClubEvents({ clubId }) {
+  // GET /api/admin/clubs/{clubId}/events → EventListResponse[]
+  // Fields: eventId, title, venue, eventDate, startTime, paid, price, availableSeats, posterUrl
+  const [clubEvents, setClubEvents]       = useState([]);
+  const [loadingClub, setLoadingClub]     = useState(true);
 
+  // GET /api/admin/events/pending → EventResponse[]
+  // Fields: eventId, title, description, venue, eventDate, startTime, endTime,
+  //         paid, price, totalSeats, availableSeats, clubName, posterUrl
+  const [pending, setPending]             = useState([]);
+  const [loadingPend, setLoadingPend]     = useState(true);
 
-  const fetchClubEvents = async () => {
-    try {
-      const res = await fetch(
-        `${API_BASE_URL}/api/admin/clubs/${clubId}/events`,
-        { credentials: "include" }
-      );
-      const data = await res.json();
-      setEvents(data || []);
-    } catch (err) {
-      console.error(err);
-    }
+  const [msg, setMsg] = useState({ text: "", type: "" });
+
+  const fetchClubEvents = () => {
+    setLoadingClub(true);
+    fetch(`${API_BASE_URL}/api/admin/clubs/${clubId}/events`, { credentials: "include" })
+      .then(r => r.json())
+      .then(d => setClubEvents(Array.isArray(d) ? d : []))
+      .catch(console.error)
+      .finally(() => setLoadingClub(false));
   };
 
-  const fetchPendingEvents = async () => {
-    try {
-      const res = await fetch(
-        `${API_BASE_URL}/api/admin/events/pending`,
-        { credentials: "include" }
-      );
-      const data = await res.json();
-      setPendingEvents(data || []);
-    } catch (err) {
-      setMessage("Failed to load pending events");
-    }
+  const fetchPending = () => {
+    setLoadingPend(true);
+    fetch(`${API_BASE_URL}/api/admin/events/pending`, { credentials: "include" })
+      .then(r => r.json())
+      .then(d => setPending(Array.isArray(d) ? d : []))
+      .catch(console.error)
+      .finally(() => setLoadingPend(false));
   };
 
   useEffect(() => {
     fetchClubEvents();
-    fetchPendingEvents();
+    fetchPending();
   }, [clubId]);
 
-  const approveEvent = async (eventId) => {
-    await fetch(
-      `${API_BASE_URL}/api/admin/events/${eventId}/approve`,
-      {
-        method: "PUT",
-        credentials: "include",
-      }
-    );
-    fetchPendingEvents();
+  // PUT /api/admin/events/{eventId}/approve → ApiResponse<String>
+  const approve = async (eventId, title) => {
+    setMsg({ text: "", type: "" });
+    const res  = await fetch(`${API_BASE_URL}/api/admin/events/${eventId}/approve`, {
+      method: "PUT", credentials: "include",
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setMsg({ text: `✅ "${title}" approved and published.`, type: "ok" });
+    } else {
+      setMsg({ text: data.message || "Approval failed.", type: "error" });
+    }
+    fetchPending();
     fetchClubEvents();
   };
 
-  const rejectEvent = async (eventId) => {
-    await fetch(
-      `${API_BASE_URL}/api/admin/events/${eventId}/reject`,
-      {
-        method: "PUT",
-        credentials: "include",
-      }
-    );
-    fetchPendingEvents();
+  // PUT /api/admin/events/{eventId}/reject → ApiResponse<String>
+  const reject = async (eventId, title) => {
+    setMsg({ text: "", type: "" });
+    const res  = await fetch(`${API_BASE_URL}/api/admin/events/${eventId}/reject`, {
+      method: "PUT", credentials: "include",
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setMsg({ text: `Event "${title}" rejected.`, type: "info" });
+    } else {
+      setMsg({ text: data.message || "Rejection failed.", type: "error" });
+    }
+    fetchPending();
   };
 
   return (
-    <div className="admin-clubs">
-      <h2>Club Events</h2>
+    <div className="club-events-panel">
 
-      <h3>Published Events</h3>
-
-      {events.length === 0 && <p>No events yet</p>}
-
-      {events.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Venue</th>
-              <th>Paid</th>
-              <th>Seats</th>
-            </tr>
-          </thead>
-          <tbody>
-            {events.map(e => (
-              <tr key={e.eventId}>
-                <td>{e.title}</td>
-                <td>{e.eventDate}</td>
-                <td>{e.venue}</td>
-                <td>{e.paid ? "Yes" : "No"}</td>
-                <td>{e.availableSeats}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {msg.text && (
+        <div className={`events-msg ${msg.type}`}>{msg.text}</div>
       )}
 
-      <h3 style={{ marginTop: "40px" }}>Pending Events</h3>
+      {/* ── PENDING APPROVALS ── */}
+      <section className="events-section">
+        <div className="events-section-hdr">
+          <h3>⏳ Pending Approvals</h3>
+          {!loadingPend && pending.length > 0 && (
+            <span className="count-badge">{pending.length} waiting</span>
+          )}
+        </div>
 
-      {message && <p style={{ color: "red" }}>{message}</p>}
+        {loadingPend && <p className="loading-inline">Loading…</p>}
 
-      {pendingEvents.length === 0 && <p>No pending events 🎉</p>}
+        {!loadingPend && pending.length === 0 && (
+          <div className="empty-inline">🎉 No pending events — inbox is clear!</div>
+        )}
 
-      {pendingEvents.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Venue</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {pendingEvents.map(e => (
-              <tr key={e.eventId}>
-                <td>{e.title}</td>
-                <td>{e.eventDate}</td>
-                <td>{e.venue}</td>
-                <td>
-                  <button
-                    style={{ marginRight: "10px", background: "green", color: "white" }}
-                    onClick={() => approveEvent(e.eventId)}
-                  >
-                    Approve
+        {!loadingPend && pending.length > 0 && (
+          <div className="pending-list">
+            {pending.map(e => (
+              <div key={e.eventId} className="pending-card">
+                <div className="pending-info">
+                  <h4>{e.title}</h4>
+                  <div className="pending-meta">
+                    <span>📅 {e.eventDate}</span>
+                    <span>⏰ {e.startTime} – {e.endTime}</span>
+                    <span>📍 {e.venue}</span>
+                    <span>🏛️ {e.clubName}</span>
+                    {e.paid
+                      ? <span className="tag-paid">₹{e.price} · PAID</span>
+                      : <span className="tag-free">FREE</span>}
+                  </div>
+                  {e.description && <p className="pending-desc">{e.description}</p>}
+                </div>
+                <div className="pending-actions">
+                  <button className="btn-approve" onClick={() => approve(e.eventId, e.title)}>
+                    ✅ Approve
                   </button>
-
-                  <button
-                    style={{ background: "red", color: "white" }}
-                    onClick={() => rejectEvent(e.eventId)}
-                  >
-                    Reject
+                  <button className="btn-reject"  onClick={() => reject(e.eventId, e.title)}>
+                    ✕ Reject
                   </button>
-                </td>
-              </tr>
+                </div>
+              </div>
             ))}
-          </tbody>
-        </table>
-      )}
+          </div>
+        )}
+      </section>
+
+      {/* ── CLUB'S PUBLISHED EVENTS ── */}
+      <section className="events-section">
+        <div className="events-section-hdr">
+          <h3>📋 Club Events</h3>
+          {!loadingClub && (
+            <span className="count-badge grey">{clubEvents.length} total</span>
+          )}
+        </div>
+
+        {loadingClub && <p className="loading-inline">Loading…</p>}
+
+        {!loadingClub && clubEvents.length === 0 && (
+          <div className="empty-inline">No events created for this club yet.</div>
+        )}
+
+        {!loadingClub && clubEvents.length > 0 && (
+          <div className="events-table-wrap">
+            <table className="events-tbl">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Venue</th>
+                  <th>Type</th>
+                  <th>Available Seats</th>
+                </tr>
+              </thead>
+              <tbody>
+                {clubEvents.map(e => (
+                  <tr key={e.eventId}>
+                    <td><strong>{e.title}</strong></td>
+                    <td>{e.eventDate}</td>
+                    <td>{e.startTime}</td>
+                    <td>{e.venue}</td>
+                    <td>
+                      {e.paid
+                        ? <span className="tag-paid">₹{e.price}</span>
+                        : <span className="tag-free">FREE</span>}
+                    </td>
+                    <td>{e.availableSeats}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

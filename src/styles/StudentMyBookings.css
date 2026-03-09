@@ -1,0 +1,38 @@
+.my-bookings-page { max-width: 800px; margin: 0 auto; padding: 24px 20px 60px; }
+.page-header { margin-bottom: 32px; }
+.page-header h1 { font-size: 2rem; margin: 12px 0 4px; }
+.page-header p { color: #64748b; }
+.back-btn { background: none; border: none; color: #6366f1; font-size: .95rem; font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 20px; display: inline-block; }
+.alert-msg { background: #dcfce7; color: #166534; padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; font-weight: 500; }
+.bookings-list { display: flex; flex-direction: column; gap: 16px; }
+.booking-card { background: #fff; border-radius: 16px; padding: 20px; display: flex; gap: 16px; align-items: flex-start; box-shadow: 0 2px 10px rgba(0,0,0,.06); border-left: 5px solid #e2e8f0; }
+.booking-card.confirmed { border-left-color: #22c55e; }
+.booking-card.cancelled  { border-left-color: #ef4444; opacity: .75; }
+.booking-card-left { font-size: 2rem; padding-top: 2px; }
+.booking-card-body { flex: 1; min-width: 0; }
+.booking-card-body h3 { font-size: 1.05rem; color: #1a202c; margin-bottom: 6px; }
+.booking-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: .85rem; color: #64748b; margin-bottom: 8px; }
+.booking-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.status-badge { font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; }
+.status-badge.confirmed { background: #dcfce7; color: #166534; }
+.status-badge.cancelled  { background: #fee2e2; color: #991b1b; }
+.refund-badge { font-size: .75rem; padding: 3px 8px; background: #fef3c7; color: #92400e; border-radius: 20px; font-weight: 600; }
+
+/* ── QR SECTION ── */
+.qr-section { margin-top: 8px; }
+.btn-show-qr { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; border-radius: 8px; padding: 7px 14px; font-size: .83rem; font-weight: 600; cursor: pointer; transition: background .2s; }
+.btn-show-qr:hover { background: #dbeafe; }
+.qr-popup { margin-top: 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.qr-popup-img { width: 180px; height: 180px; border: 3px solid #e2e8f0; border-radius: 10px; display: block; }
+.qr-popup-hint { font-size: .85rem; color: #475569; font-weight: 500; }
+.qr-popup-id { font-size: .78rem; color: #94a3b8; }
+.qr-popup-id code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; word-break: break-all; }
+.btn-download-qr { padding: 8px 16px; background: #1a202c; color: #fff; border: none; border-radius: 8px; font-size: .83rem; font-weight: 600; cursor: pointer; margin-top: 4px; }
+
+.booking-card-actions { flex-shrink: 0; padding-top: 4px; }
+.btn-cancel { padding: 8px 16px; background: #fee2e2; color: #991b1b; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-cancel:hover { background: #fca5a5; } .btn-cancel:disabled { opacity: .5; cursor: not-allowed; }
+.empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; }
+.empty-state span { font-size: 3rem; display: block; margin-bottom: 12px; }
+.btn-primary { padding: 12px 24px; background: #6366f1; color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; margin-top: 12px; }
+.loading { text-align: center; padding: 40px; color: #64748b; }

@@ -1,0 +1,16 @@
+.student-dashboard { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+.student-hero { text-align: center; padding: 40px 0 36px; }
+.student-hero h1 { font-size: 2.2rem; background: linear-gradient(135deg,#4f46e5,#7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.student-hero p { color: #64748b; margin-top: 8px; font-size: 1.05rem; }
+.student-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.student-card { background: #fff; border-radius: 18px; padding: 28px 24px; cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,.07); transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden; }
+.student-card::before { content: ''; position: absolute; top: 0; right: 0; width: 80px; height: 80px; border-radius: 50%; opacity: .12; transform: translate(20px,-20px); }
+.student-card.purple { border-top: 4px solid #6366f1; } .student-card.purple::before { background: #6366f1; }
+.student-card.green { border-top: 4px solid #22c55e; } .student-card.green::before { background: #22c55e; }
+.student-card.blue { border-top: 4px solid #3b82f6; } .student-card.blue::before { background: #3b82f6; }
+.student-card.orange { border-top: 4px solid #f97316; } .student-card.orange::before { background: #f97316; }
+.student-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+.student-card .card-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.student-card h3 { font-size: 1.1rem; color: #1a202c; margin-bottom: 6px; }
+.student-card p { font-size: .88rem; color: #64748b; line-height: 1.5; }
+.student-card .card-arrow { position: absolute; bottom: 16px; right: 20px; font-size: 1.2rem; color: #94a3b8; }

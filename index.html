@@ -4,7 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bookmyslot-frontend</title>
+    <title>BookMySlot</title>
+
+    <!--
+      jsQR: QR code decoder for camera scanning fallback.
+      Used by StaffCheckIn.jsx when BarcodeDetector API is not available
+      (Firefox, older Safari). BarcodeDetector is used first (Chrome/Edge/Android).
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+ <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   </head>
   <body>
     <div id="root"></div>

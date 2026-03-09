@@ -1,0 +1,26 @@
+.teacher-bookings-page { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+.page-header { margin-bottom: 32px; }
+.page-header h1 { font-size: 2rem; margin: 12px 0 4px; }
+.page-header p { color: #64748b; }
+.back-btn { background: none; border: none; color: #6366f1; font-size: .95rem; font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 20px; display: inline-block; }
+.filter-row { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
+.filter-btn { padding: 8px 18px; border: 2px solid #e2e8f0; border-radius: 20px; background: #fff; cursor: pointer; font-weight: 600; font-size: .85rem; transition: all .2s; }
+.filter-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; }
+.booking-count { margin-left: auto; color: #94a3b8; font-size: .9rem; }
+.booking-day-group { margin-bottom: 24px; }
+.day-label { font-weight: 700; color: #475569; font-size: .9rem; text-transform: uppercase; letter-spacing: .5px; padding: 8px 0; margin-bottom: 10px; border-bottom: 2px solid #f1f5f9; }
+.teacher-booking-card { background: #fff; border-radius: 14px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.05); border-left: 4px solid #e2e8f0; }
+.teacher-booking-card.booked { border-left-color: #22c55e; }
+.teacher-booking-card.cancelled { border-left-color: #ef4444; opacity: .7; }
+.student-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+.student-avatar { width: 42px; height: 42px; background: linear-gradient(135deg,#6366f1,#7c3aed); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+.student-info h3 { font-size: .95rem; color: #1a202c; margin-bottom: 2px; }
+.student-info p { font-size: .82rem; color: #64748b; }
+.booking-time { display: flex; align-items: center; gap: 6px; color: #475569; font-size: .9rem; }
+.status-badge { font-size: .75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+.status-badge.booked { background: #dcfce7; color: #166534; }
+.status-badge.cancelled { background: #fee2e2; color: #991b1b; }
+.empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; }
+.empty-state span { font-size: 3rem; display: block; margin-bottom: 12px; }
+.btn-primary { padding: 12px 24px; background: #6366f1; color: #fff; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; margin-top: 12px; }
+.loading { text-align: center; padding: 40px; color: #64748b; }

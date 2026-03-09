@@ -1,101 +1,128 @@
-.admin-clubs {
-  padding: 30px;
-  font-family: Arial, sans-serif;
-  background: #f6f7fb;
-  min-height: 100vh;
+/* ── Page ── */
+.clubs-page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
+
+/* ── Header ── */
+.clubs-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+}
+.back-link {
+  background: none; border: none; color: #6366f1; font-size: .88rem;
+  font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 6px; display: block;
+}
+.clubs-header h1 { font-size: 1.75rem; color: #0f172a; margin-bottom: 6px; }
+.stat-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: .78rem; font-weight: 600; margin-right: 6px;
+}
+.stat-badge.green { background: #dcfce7; color: #166534; }
+.stat-badge.grey  { background: #f1f5f9; color: #475569; }
+
+/* ── Buttons ── */
+.btn-primary {
+  padding: 10px 22px; background: #6366f1; color: #fff; border: none;
+  border-radius: 10px; font-weight: 700; font-size: .9rem; cursor: pointer;
+  white-space: nowrap; transition: background .15s;
+}
+.btn-primary:hover { background: #4f46e5; }
+
+/* ── Create form card ── */
+.create-form-card {
+  background: #fff; border-radius: 18px; padding: 28px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08); margin-bottom: 24px;
+  border: 2px solid #e0e7ff;
+}
+.create-form-card h3 { font-size: 1rem; color: #1e293b; margin-bottom: 20px; font-weight: 700; }
+
+.form-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 16px; }
+@media (max-width: 700px) { .form-grid-3 { grid-template-columns: 1fr; } }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: .82rem; font-weight: 600; color: #374151; }
+.field input, .field select, .field textarea {
+  padding: 11px 13px; border: 2px solid #e2e8f0; border-radius: 10px;
+  font-size: .92rem; transition: border-color .2s; background: #fff; color: #1a202c;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: #6366f1;
 }
 
-.admin-clubs h1,
-.admin-clubs h2 {
-  margin-bottom: 20px;
-  color: #222;
+.form-msg { padding: 10px 14px; border-radius: 8px; font-size: .88rem; font-weight: 500; margin-bottom: 12px; }
+.form-msg.ok    { background: #dcfce7; color: #166534; }
+.form-msg.error { background: #fee2e2; color: #991b1b; }
+
+.btn-create {
+  padding: 12px 28px; background: linear-gradient(135deg,#6366f1,#7c3aed); color: #fff;
+  border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: .92rem;
+  transition: opacity .15s;
+}
+.btn-create:hover { opacity: .9; }
+.btn-create:disabled { opacity: .55; cursor: not-allowed; }
+
+.banner-ok {
+  background: #dcfce7; color: #166534; padding: 12px 18px;
+  border-radius: 10px; font-weight: 600; margin-bottom: 18px;
 }
 
-/* ---------- CREATE CLUB FORM ---------- */
-.club-form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 25px;
+/* ── Toolbar ── */
+.clubs-toolbar { margin-bottom: 18px; }
+.search-input {
+  width: 100%; max-width: 420px; padding: 11px 16px;
+  border: 2px solid #e2e8f0; border-radius: 10px; font-size: .92rem;
+  transition: border-color .2s;
 }
+.search-input:focus { outline: none; border-color: #6366f1; }
 
-.club-form input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  flex: 1;
+/* ── Club cards ── */
+.clubs-list { display: flex; flex-direction: column; gap: 14px; }
+.club-card {
+  background: #fff; border-radius: 16px; padding: 20px 24px;
+  display: flex; align-items: center; gap: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: box-shadow .2s;
+  border: 2px solid transparent;
 }
+.club-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.1); }
+.club-card.card-inactive { opacity: .65; }
 
-.club-form button {
-  padding: 10px 16px;
-  background: #4f46e5;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.club-avatar {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: linear-gradient(135deg,#6366f1,#7c3aed); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; font-weight: 800; flex-shrink: 0;
 }
+.club-info { flex: 1; min-width: 0; }
+.club-info h3 { font-size: .98rem; color: #0f172a; margin-bottom: 3px; }
+.club-email { font-size: .82rem; color: #64748b; }
+.club-desc  { font-size: .82rem; color: #94a3b8; margin-top: 3px; }
+.club-since { font-size: .78rem; color: #94a3b8; margin-top: 4px; }
 
-.club-form button:hover {
-  background: #4338ca;
-}
+.club-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
 
-/* ---------- TABLE ---------- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
+.status-pill {
+  padding: 3px 10px; border-radius: 20px; font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; white-space: nowrap;
 }
+.pill-green { background: #dcfce7; color: #166534; }
+.pill-red   { background: #fee2e2; color: #991b1b; }
 
-thead {
-  background: #eef2ff;
+.btn-open {
+  padding: 8px 16px; background: #6366f1; color: #fff; border: none;
+  border-radius: 8px; font-size: .83rem; font-weight: 600; cursor: pointer;
+  white-space: nowrap; transition: background .15s;
 }
+.btn-open:hover { background: #4f46e5; }
 
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
+.btn-deactivate {
+  padding: 8px 14px; background: #fee2e2; color: #991b1b; border: none;
+  border-radius: 8px; font-size: .83rem; font-weight: 600; cursor: pointer; transition: background .15s;
 }
+.btn-deactivate:hover { background: #fca5a5; }
 
-th {
-  font-weight: 600;
-  color: #333;
+.btn-activate {
+  padding: 8px 14px; background: #dcfce7; color: #166534; border: none;
+  border-radius: 8px; font-size: .83rem; font-weight: 600; cursor: pointer; transition: background .15s;
 }
+.btn-activate:hover { background: #bbf7d0; }
 
-tbody tr:hover {
-  background: #f9fafb;
-}
-
-/* ---------- BUTTONS ---------- */
-button {
-  margin-right: 6px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-button.info {
-  background: #0ea5e9;
-  color: white;
-}
-
-button.success {
-  background: #22c55e;
-  color: white;
-}
-
-button.danger {
-  background: #ef4444;
-  color: white;
-}
-
-button.secondary {
-  background: #64748b;
-  color: white;
-}
-
-button:hover {
-  opacity: 0.9;
-}
+.loading-state, .empty-state { text-align: center; padding: 50px 20px; color: #94a3b8; }
+.empty-state span { font-size: 2.5rem; display: block; margin-bottom: 10px; }

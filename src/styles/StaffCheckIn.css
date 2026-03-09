@@ -1,0 +1,73 @@
+.checkin-page { max-width: 720px; margin: 0 auto; padding: 24px 20px 60px; }
+.page-header { margin-bottom: 28px; }
+.page-header h1 { font-size: 2rem; margin: 12px 0 4px; }
+.page-header p { color: #64748b; }
+.back-btn { background: none; border: none; color: #6366f1; font-size: .95rem; font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 20px; display: inline-block; }
+
+/* ── TABS ── */
+.checkin-tabs { display: flex; gap: 10px; margin-bottom: 24px; }
+.checkin-tab { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; background: #fff; font-weight: 600; font-size: .95rem; cursor: pointer; transition: all .2s; color: #64748b; }
+.checkin-tab.active { background: #6366f1; border-color: #6366f1; color: #fff; }
+.checkin-tab:not(.active):hover { border-color: #6366f1; color: #6366f1; }
+
+/* ── CAMERA CARD ── */
+.camera-card { background: #0f172a; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 24px; }
+.camera-frame { position: relative; width: 100%; max-width: 480px; aspect-ratio: 1; border-radius: 14px; overflow: hidden; background: #000; }
+.camera-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* animated scan overlay */
+.scan-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.scan-box { position: relative; width: 64%; aspect-ratio: 1; }
+.corner { position: absolute; width: 22px; height: 22px; border-color: #22d3ee; border-style: solid; }
+.corner.tl { top: 0; left: 0;  border-width: 4px 0 0 4px; border-radius: 4px 0 0 0; }
+.corner.tr { top: 0; right: 0; border-width: 4px 4px 0 0; border-radius: 0 4px 0 0; }
+.corner.bl { bottom: 0; left: 0;  border-width: 0 0 4px 4px; border-radius: 0 0 0 4px; }
+.corner.br { bottom: 0; right: 0; border-width: 0 4px 4px 0; border-radius: 0 0 4px 0; }
+.scan-line { position: absolute; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #22d3ee, transparent); top: 0; animation: scanDown 2s linear infinite; }
+@keyframes scanDown { 0% { top: 0; } 100% { top: 100%; } }
+
+.cam-hint { color: #94a3b8; font-size: .88rem; text-align: center; }
+.scanning-msg { color: #fbbf24; font-size: .9rem; font-weight: 600; }
+.cam-error { color: #f87171; font-size: .9rem; text-align: center; background: rgba(239,68,68,.1); padding: 10px 16px; border-radius: 10px; }
+
+/* ── MANUAL CARD ── */
+.checkin-card { background: #fff; border-radius: 20px; padding: 36px; box-shadow: 0 4px 20px rgba(0,0,0,.07); text-align: center; margin-bottom: 24px; }
+.card-icon { font-size: 3rem; margin-bottom: 12px; }
+.checkin-card h2 { font-size: 1.35rem; color: #1a202c; margin-bottom: 6px; }
+.checkin-card p  { color: #64748b; margin-bottom: 24px; font-size: .9rem; }
+.input-row { display: flex; gap: 10px; }
+.ticket-input { flex: 1; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: .95rem; transition: border-color .2s; font-family: monospace; }
+.ticket-input:focus { outline: none; border-color: #6366f1; }
+.btn-checkin { padding: 14px 22px; background: linear-gradient(135deg,#6366f1,#7c3aed); color: #fff; border: none; border-radius: 12px; font-weight: 700; font-size: .95rem; cursor: pointer; white-space: nowrap; }
+.btn-checkin:disabled { opacity: .6; cursor: not-allowed; }
+
+/* ── RESULT BOX ── */
+.result-box { display: flex; gap: 16px; align-items: flex-start; padding: 22px; border-radius: 16px; margin-top: 20px; margin-bottom: 20px; }
+.result-box.success { background: #dcfce7; border: 2px solid #86efac; }
+.result-box.warning { background: #fef3c7; border: 2px solid #fcd34d; }
+.result-box.error   { background: #fee2e2; border: 2px solid #fca5a5; }
+.result-icon { font-size: 2.2rem; flex-shrink: 0; }
+.result-body { flex: 1; }
+.result-body h3 { font-size: 1.05rem; color: #1a202c; margin-bottom: 10px; }
+.result-grid { display: flex; flex-direction: column; gap: 6px; }
+.r-row { display: flex; justify-content: space-between; gap: 12px; font-size: .88rem; border-bottom: 1px dashed rgba(0,0,0,.08); padding-bottom: 5px; }
+.r-row span { color: #64748b; }
+.r-row strong { color: #1a202c; }
+.r-row code { font-size: .78rem; background: rgba(0,0,0,.06); padding: 2px 6px; border-radius: 4px; word-break: break-all; }
+.btn-retry, .btn-next { flex-shrink: 0; align-self: center; padding: 10px 18px; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: .88rem; }
+.btn-retry { background: #ef4444; color: #fff; }
+.btn-next  { background: #6366f1; color: #fff; }
+
+/* ── TIPS ── */
+.checkin-tips { background: #eff6ff; border-radius: 14px; padding: 20px 24px; border-left: 4px solid #3b82f6; margin-top: 12px; }
+.checkin-tips h3 { font-size: .95rem; color: #1d4ed8; margin-bottom: 10px; }
+.checkin-tips ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.checkin-tips ul li { font-size: .88rem; color: #1d4ed8; padding-left: 12px; position: relative; }
+.checkin-tips ul li::before { content: "•"; position: absolute; left: 0; }
+.tip-green  { font-weight: 700; color: #166534; }
+.tip-yellow { font-weight: 700; color: #92400e; }
+
+@media (max-width: 480px) {
+  .input-row { flex-direction: column; }
+  .btn-checkin { width: 100%; }
+}

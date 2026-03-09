@@ -1,0 +1,30 @@
+.teacher-calendar-page { max-width: 1000px; margin: 0 auto; padding: 24px 20px 60px; }
+.page-header { margin-bottom: 32px; }
+.page-header h1 { font-size: 2rem; margin: 12px 0 4px; }
+.page-header p { color: #64748b; }
+.back-btn { background: none; border: none; color: #6366f1; font-size: .95rem; font-weight: 600; cursor: pointer; padding: 0; margin-bottom: 20px; display: inline-block; }
+.calendar-container { background: #fff; border-radius: 20px; padding: 24px; box-shadow: 0 4px 24px rgba(0,0,0,.08); margin-bottom: 20px; }
+.calendar-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.calendar-nav h2 { font-size: 1.2rem; color: #1a202c; }
+.nav-btn { background: #f1f5f9; border: none; border-radius: 8px; padding: 8px 16px; font-size: 1.2rem; cursor: pointer; color: #475569; transition: background .2s; }
+.nav-btn:hover { background: #e2e8f0; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.day-header { text-align: center; font-size: .78rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; padding: 8px 0; }
+.day-cell { min-height: 90px; border-radius: 8px; padding: 6px; background: #f8fafc; }
+.day-cell.empty { background: transparent; }
+.day-cell.today { background: #eff6ff; border: 2px solid #6366f1; }
+.day-cell.has-events { background: #fefce8; }
+.day-number { font-size: .82rem; font-weight: 600; color: #475569; display: block; margin-bottom: 4px; }
+.day-cell.today .day-number { color: #6366f1; font-weight: 800; }
+.day-events { display: flex; flex-direction: column; gap: 2px; }
+.cal-event { display: flex; align-items: center; gap: 3px; font-size: .68rem; padding: 2px 5px; border-radius: 4px; font-weight: 600; overflow: hidden; }
+.cal-event.available { background: #dcfce7; color: #166534; }
+.cal-event.booked { background: #dbeafe; color: #1d4ed8; }
+.cal-event-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.more-events { font-size: .66rem; color: #94a3b8; }
+.cal-legend { display: flex; gap: 20px; align-items: center; padding: 0 4px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: #64748b; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+.legend-dot.available { background: #22c55e; }
+.legend-dot.booked { background: #3b82f6; }
+.loading { text-align: center; padding: 40px; color: #64748b; }

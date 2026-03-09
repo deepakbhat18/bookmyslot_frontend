@@ -1,81 +1,70 @@
-.admin-clubs {
-  padding: 30px;
-  font-family: "Segoe UI", sans-serif;
+.club-events-panel { display: flex; flex-direction: column; gap: 32px; }
+
+/* Message */
+.events-msg {
+  padding: 12px 16px; border-radius: 10px;
+  font-size: .9rem; font-weight: 500;
 }
+.events-msg.ok    { background: #dcfce7; color: #166534; }
+.events-msg.info  { background: #fef3c7; color: #92400e; }
+.events-msg.error { background: #fee2e2; color: #991b1b; }
 
-.admin-clubs h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #96a0ff;
+/* Section */
+
+.events-section-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.events-section-hdr h3 { font-size: 1rem; font-weight: 700; color: #0f172a; }
+.count-badge {
+  padding: 3px 10px; background: #fef3c7; color: #92400e;
+  border-radius: 20px; font-size: .74rem; font-weight: 700;
 }
+.count-badge.grey { background: #f1f5f9; color: #475569; }
 
-.admin-clubs h3 {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  color: #ffffff;
+.loading-inline { color: #94a3b8; font-size: .88rem; padding: 12px 0; }
+.empty-inline   { color: #94a3b8; font-size: .88rem; padding: 16px 0; }
+
+/* Pending cards */
+.pending-list { display: flex; flex-direction: column; gap: 12px; }
+.pending-card {
+  border: 2px solid #fef3c7; border-radius: 14px;
+  padding: 18px 20px; display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 20px; background: #fffbeb;
 }
+.pending-info { flex: 1; }
+.pending-info h4 { font-size: .95rem; color: #1e293b; margin-bottom: 8px; }
+.pending-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: .8rem; color: #64748b; }
+.pending-desc { font-size: .82rem; color: #94a3b8; margin-top: 8px; line-height: 1.5; }
 
-.admin-clubs table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.tag-paid { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: .75rem; }
+.tag-free { background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: .75rem; }
+
+.pending-actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+
+.btn-approve {
+  padding: 9px 18px; background: #22c55e; color: #fff; border: none;
+  border-radius: 8px; font-weight: 700; font-size: .83rem; cursor: pointer; white-space: nowrap;
+  transition: background .15s;
 }
-
-.admin-clubs thead {
-  background: #9fa6eb;
-  color: white;
+.btn-approve:hover { background: #16a34a; }
+.btn-reject {
+  padding: 9px 18px; background: #fee2e2; color: #991b1b; border: none;
+  border-radius: 8px; font-weight: 700; font-size: .83rem; cursor: pointer; white-space: nowrap;
+  transition: background .15s;
 }
+.btn-reject:hover { background: #fca5a5; }
 
-.admin-clubs th,
-.admin-clubs td {
-  padding: 12px 14px;
-  text-align: left;
-  border-bottom: 1px solid #eaeaea;
+/* Events table */
+.events-table-wrap { overflow-x: auto; }
+.events-tbl { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.events-tbl th {
+  background: #f8fafc; padding: 10px 14px; text-align: left;
+  font-weight: 700; color: #374151; font-size: .79rem;
+  text-transform: uppercase; letter-spacing: .4px;
+  border-bottom: 2px solid #e2e8f0;
 }
+.events-tbl td { padding: 11px 14px; border-bottom: 1px solid #f1f5f9; }
+.events-tbl tbody tr:hover { background: #f8fafc; }
 
-.admin-clubs tbody tr:hover {
-  background: #f5f7ff;
-}
-
-
-.admin-clubs button {
-  padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.admin-clubs button:active {
-  transform: scale(0.97);
-}
-
-.admin-clubs button.approve {
-  background-color: #2ecc71;
-  color: white;
-}
-
-.admin-clubs button.reject {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.admin-clubs button.approve:hover {
-  background-color: #27ae60;
-}
-
-.admin-clubs button.reject:hover {
-  background-color: #c0392b;
-}
-
-.admin-clubs p {
-  color: #555;
-  font-size: 15px;
-}
-
-.admin-clubs .error {
-  color: red;
-  margin-bottom: 10px;
+@media (max-width: 600px) {
+  .pending-card { flex-direction: column; }
+  .pending-actions { flex-direction: row; }
 }

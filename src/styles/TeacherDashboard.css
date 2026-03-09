@@ -1,0 +1,14 @@
+.teacher-dashboard { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+.teacher-hero { text-align: center; padding: 40px 0 36px; }
+.teacher-hero h1 { font-size: 2.2rem; background: linear-gradient(135deg,#0ea5e9,#6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.teacher-hero p { color: #64748b; margin-top: 8px; font-size: 1.05rem; }
+.teacher-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.teacher-card { background: #fff; border-radius: 18px; padding: 28px 24px; cursor: pointer; box-shadow: 0 2px 12px rgba(0,0,0,.07); transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden; }
+.teacher-card.blue { border-top: 4px solid #3b82f6; }
+.teacher-card.green { border-top: 4px solid #22c55e; }
+.teacher-card.purple { border-top: 4px solid #6366f1; }
+.teacher-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+.teacher-card .card-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.teacher-card h3 { font-size: 1.1rem; color: #1a202c; margin-bottom: 6px; }
+.teacher-card p { font-size: .88rem; color: #64748b; line-height: 1.5; }
+.teacher-card .card-arrow { position: absolute; bottom: 16px; right: 20px; font-size: 1.2rem; color: #94a3b8; }

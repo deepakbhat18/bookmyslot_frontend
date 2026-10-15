@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/StudentEventDetail.css";
 
 export default function StudentEventDetail() {
@@ -20,7 +20,7 @@ export default function StudentEventDetail() {
   // eventDate(LocalDate), startTime(LocalTime), endTime(LocalTime),
   // venue, clubName, eventType("FREE"|"PAID")
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/public/events/${eventId}`)
+    apiFetch(`${API_BASE_URL}/api/public/events/${eventId}`)
       .then((r) => r.json())
       .then(setEvent)
       .catch(console.error)
@@ -33,10 +33,8 @@ export default function StudentEventDetail() {
     setBooking(true); setErrMsg("");
     try {
       // POST /api/events/bookings/book  body: { eventId, studentId }
-      const res = await fetch(`${API_BASE_URL}/api/events/bookings/book`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/events/bookings/book`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({
           eventId: Number(eventId),
           studentId: Number(studentId),
@@ -62,10 +60,8 @@ export default function StudentEventDetail() {
     try {
       // Step 1 — POST /api/payments/create  body: { eventId, studentId }
       // Returns PaymentResponse: { orderId, amount, status }
-      const createRes = await fetch(`${API_BASE_URL}/api/payments/create`, {
+      const createRes = await apiFetch(`${API_BASE_URL}/api/payments/create`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({
           eventId: Number(eventId),
           studentId: Number(studentId),
@@ -93,10 +89,8 @@ export default function StudentEventDetail() {
         handler: async (response) => {
           // Step 3 — POST /api/payments/verify
           // body: { orderId, paymentId, signature }
-          const verifyRes = await fetch(`${API_BASE_URL}/api/payments/verify`, {
+          const verifyRes = await apiFetch(`${API_BASE_URL}/api/payments/verify`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
             body: JSON.stringify({
               orderId:   response.razorpay_order_id,
               paymentId: response.razorpay_payment_id,

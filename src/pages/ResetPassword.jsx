@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/Auth.css";
 
 export default function ResetPassword() {
@@ -32,9 +32,8 @@ export default function ResetPassword() {
 
 
   const handleResendOtp = async () => {
-    await fetch(`${API_BASE_URL}/api/auth/resend-otp`, {
+    await apiFetch(`${API_BASE_URL}/api/auth/resend-otp`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
     });
 
@@ -46,9 +45,8 @@ export default function ResetPassword() {
   const handleReset = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`${API_BASE_URL}/api/auth/reset-password`, {
+    const res = await apiFetch(`${API_BASE_URL}/api/auth/reset-password`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email,
         otp,

@@ -26,7 +26,7 @@
 
 
 import { useNavigate, useLocation } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/navbar.css";
 
 export default function Navbar() {
@@ -36,12 +36,16 @@ export default function Navbar() {
   const userId = sessionStorage.getItem("USER_ID");
 
   const handleLogout = async () => {
-    await fetch(`${API_BASE_URL}/api/auth/logout`, {
-      method: "POST",
-      credentials: "include",
-    });
-    sessionStorage.clear();
-    navigate("/login");
+    try {
+      await apiFetch(`${API_BASE_URL}/api/auth/logout`, {
+        method: "POST",
+      });
+    } catch (e) {
+      console.error("Logout error", e);
+    } finally {
+      sessionStorage.clear();
+      navigate("/login");
+    }
   };
 
   const isActive = (path) => location.pathname.startsWith(path) ? "nav-link active" : "nav-link";

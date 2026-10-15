@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/AdminStaff.css";
 
 export default function AdminStaffDetails() {
@@ -18,7 +18,7 @@ export default function AdminStaffDetails() {
 
   const loadStaff = () => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/api/admin/staff/${staffId}`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/staff/${staffId}`)
       .then(r => r.json())
       .then(setStaff)
       .catch(console.error)
@@ -32,8 +32,8 @@ export default function AdminStaffDetails() {
     if (!window.confirm(`Deactivate ${staff?.name}? They will lose all access.`)) return;
     setWorking(true);
     setMsg({ text: "", type: "" });
-    const res  = await fetch(`${API_BASE_URL}/api/admin/staff/${staffId}/deactivate`, {
-      method: "PUT", credentials: "include",
+    const res  = await apiFetch(`${API_BASE_URL}/api/admin/staff/${staffId}/deactivate`, {
+      method: "PUT",
     });
     const data = await res.json();
     setMsg(res.ok
@@ -49,8 +49,8 @@ export default function AdminStaffDetails() {
   const resetPassword = async () => {
     setWorking(true);
     setMsg({ text: "", type: "" });
-    const res  = await fetch(`${API_BASE_URL}/api/admin/staff/${staffId}/reset-password`, {
-      method: "POST", credentials: "include",
+    const res  = await apiFetch(`${API_BASE_URL}/api/admin/staff/${staffId}/reset-password`, {
+      method: "POST",
     });
     const data = await res.json();
     setMsg(res.ok

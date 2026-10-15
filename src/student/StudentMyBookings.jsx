@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/StudentMyBookings.css";
 
 export default function StudentMyBookings() {
@@ -19,7 +19,7 @@ export default function StudentMyBookings() {
 
   const fetchBookings = () => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/api/events/bookings/my`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/events/bookings/my`)
       .then((r) => r.json())
       .then((data) => setBookings(data.data || []))
       .catch(console.error)
@@ -31,9 +31,9 @@ export default function StudentMyBookings() {
     setCancelling(bookingId);
     setMessage("");
     try {
-      const res = await fetch(
+      const res = await apiFetch(
         `${API_BASE_URL}/api/events/bookings/cancel/${bookingId}`,
-        { method: "POST", credentials: "include" }
+        { method: "POST" }
       );
       const data = await res.json();
       if (res.ok) { setMessage("Booking cancelled successfully."); fetchBookings(); }

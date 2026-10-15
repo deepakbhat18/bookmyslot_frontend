@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/AdminStaff.css";
 
 export default function AdminStaffList() {
@@ -17,7 +17,7 @@ export default function AdminStaffList() {
 
   const loadStaff = () => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/api/admin/staff`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/staff`)
       .then(r => r.json())
       .then(d => setStaff(Array.isArray(d) ? d : []))
       .catch(console.error)
@@ -30,8 +30,8 @@ export default function AdminStaffList() {
   const deactivate = async (id, name) => {
     if (!window.confirm(`Deactivate ${name}? They will lose access immediately.`)) return;
     setMsg("");
-    const res  = await fetch(`${API_BASE_URL}/api/admin/staff/${id}/deactivate`, {
-      method: "PUT", credentials: "include",
+    const res  = await apiFetch(`${API_BASE_URL}/api/admin/staff/${id}/deactivate`, {
+      method: "PUT",
     });
     const data = await res.json();
     setMsg(res.ok ? `${name} has been deactivated.` : data.message || "Failed.");

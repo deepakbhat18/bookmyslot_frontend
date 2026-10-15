@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/Register.css";
 
 export default function Register() {
@@ -46,9 +46,8 @@ export default function Register() {
     if (form.role === "CLUB") payload.clubId = Number(form.clubId);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
 
@@ -71,9 +70,8 @@ export default function Register() {
     setMessage("");
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/auth/verify-otp`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/auth/verify-otp`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: form.email,
           otp: otp.trim()
@@ -95,9 +93,8 @@ export default function Register() {
   };
 
   const resendOtp = async () => {
-    await fetch(`${API_BASE_URL}/api/auth/resend-otp`, {
+    await apiFetch(`${API_BASE_URL}/api/auth/resend-otp`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: form.email })
     });
 

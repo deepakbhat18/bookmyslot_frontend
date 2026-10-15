@@ -6,7 +6,7 @@ import {
   AreaChart, Area, BarChart, Bar,
   XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
 } from "recharts";
-import { API_BASE_URL } from "../../api/config";
+import { API_BASE_URL, apiFetch } from "../../api/config";
 import "../../styles/AdminDashboard.css";
 
 export default function AdminDashboard() {
@@ -33,10 +33,10 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API_BASE_URL}/api/admin/analytics/overview`,      { credentials: "include" }).then(r => r.json()),
-      fetch(`${API_BASE_URL}/api/admin/analytics/daily-bookings?days=7`, { credentials: "include" }).then(r => r.json()),
-      fetch(`${API_BASE_URL}/api/admin/analytics/teacher-usage`, { credentials: "include" }).then(r => r.json()),
-      fetch(`${API_BASE_URL}/api/admin/event-analytics`,         { credentials: "include" }).then(r => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/analytics/overview`).then(r => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/analytics/daily-bookings?days=7`).then(r => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/analytics/teacher-usage`).then(r => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/event-analytics`).then(r => r.json()),
     ])
       .then(([ov, db, tu, ea]) => {
         setStats(ov);

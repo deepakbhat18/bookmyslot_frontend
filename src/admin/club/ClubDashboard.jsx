@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import ClubEvents from "./ClubEvents";
 import ClubAnalytics from "./ClubAnalytics";
 import "../../styles/ClubDashboard.css";
@@ -14,7 +14,7 @@ export default function ClubDashboard() {
   // Load club details to show name/status in header
   // GET /api/admin/clubs → List<Club> (raw, no wrapper)
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/admin/clubs`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/clubs`)
       .then(r => r.json())
       .then(list => {
         const found = (Array.isArray(list) ? list : [])

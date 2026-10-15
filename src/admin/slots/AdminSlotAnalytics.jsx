@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip,
   LineChart, Line, ResponsiveContainer,
 } from "recharts";
-import { API_BASE_URL } from "../../api/config";
+import { API_BASE_URL, apiFetch } from "../../api/config";
 import "../../styles/AdminSlotAnalytics.css";
 
 export default function AdminSlotAnalytics() {
@@ -16,9 +16,9 @@ export default function AdminSlotAnalytics() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API_BASE_URL}/api/admin/analytics/overview`, { credentials: "include" }).then((r) => r.json()),
-      fetch(`${API_BASE_URL}/api/admin/analytics/daily-bookings?days=14`, { credentials: "include" }).then((r) => r.json()),
-      fetch(`${API_BASE_URL}/api/admin/analytics/teacher-usage`, { credentials: "include" }).then((r) => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/analytics/overview`).then((r) => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/analytics/daily-bookings?days=14`).then((r) => r.json()),
+      apiFetch(`${API_BASE_URL}/api/admin/analytics/teacher-usage`).then((r) => r.json()),
     ])
       .then(([ov, dl, tc]) => { setOverview(ov); setDaily(dl); setTeachers(tc); })
       .catch(console.error)

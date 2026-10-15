@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/ClubEvents.css";
 
 export default function ClubEvents({ clubId }) {
@@ -19,7 +19,7 @@ export default function ClubEvents({ clubId }) {
 
   const fetchClubEvents = () => {
     setLoadingClub(true);
-    fetch(`${API_BASE_URL}/api/admin/clubs/${clubId}/events`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/clubs/${clubId}/events`)
       .then(r => r.json())
       .then(d => setClubEvents(Array.isArray(d) ? d : []))
       .catch(console.error)
@@ -28,7 +28,7 @@ export default function ClubEvents({ clubId }) {
 
   const fetchPending = () => {
     setLoadingPend(true);
-    fetch(`${API_BASE_URL}/api/admin/events/pending`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/events/pending`)
       .then(r => r.json())
       .then(d => setPending(Array.isArray(d) ? d : []))
       .catch(console.error)
@@ -43,8 +43,8 @@ export default function ClubEvents({ clubId }) {
   // PUT /api/admin/events/{eventId}/approve → ApiResponse<String>
   const approve = async (eventId, title) => {
     setMsg({ text: "", type: "" });
-    const res  = await fetch(`${API_BASE_URL}/api/admin/events/${eventId}/approve`, {
-      method: "PUT", credentials: "include",
+    const res  = await apiFetch(`${API_BASE_URL}/api/admin/events/${eventId}/approve`, {
+      method: "PUT",
     });
     const data = await res.json();
     if (res.ok) {
@@ -59,8 +59,8 @@ export default function ClubEvents({ clubId }) {
   // PUT /api/admin/events/{eventId}/reject → ApiResponse<String>
   const reject = async (eventId, title) => {
     setMsg({ text: "", type: "" });
-    const res  = await fetch(`${API_BASE_URL}/api/admin/events/${eventId}/reject`, {
-      method: "PUT", credentials: "include",
+    const res  = await apiFetch(`${API_BASE_URL}/api/admin/events/${eventId}/reject`, {
+      method: "PUT",
     });
     const data = await res.json();
     if (res.ok) {

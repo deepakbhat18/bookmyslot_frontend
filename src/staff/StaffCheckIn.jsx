@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/StaffCheckIn.css";
 
 export default function StaffCheckIn() {
@@ -121,10 +121,8 @@ export default function StaffCheckIn() {
   const checkIn = async (tid) => {
     setLoading(true); setResult(null); setError("");
     try {
-      const res = await fetch(`${API_BASE_URL}/api/events/checkin`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/events/checkin`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({ ticketId: tid.trim(), staffUserId: Number(staffId) }),
       });
       const data = await res.json();

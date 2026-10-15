@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/TeacherCreateSlot.css";
 
 export default function TeacherCreateSlot() {
@@ -17,9 +17,8 @@ export default function TeacherCreateSlot() {
     if (form.startTime >= form.endTime) { setMessage("End time must be after start time"); setMessageType("error"); return; }
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/api/slots/create`, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        credentials: "include",
+      const res = await apiFetch(`${API_BASE_URL}/api/slots/create`, {
+        method: "POST",
         body: JSON.stringify({ teacherId: Number(teacherId), date: form.date, startTime: form.startTime, endTime: form.endTime }),
       });
       const data = await res.json();

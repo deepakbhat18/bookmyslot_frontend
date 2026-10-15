@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/AdminStaff.css";
 
 export default function AdminStaffAdd() {
@@ -17,7 +17,7 @@ export default function AdminStaffAdd() {
 
   // GET /api/admin/clubs → raw List<Club>
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/admin/clubs`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/clubs`)
       .then(r => r.json())
       .then(d => setClubs(Array.isArray(d) ? d.filter(c => c.status === "ACTIVE") : []))
       .catch(console.error);
@@ -33,10 +33,8 @@ export default function AdminStaffAdd() {
     setLoading(true);
     setMsg({ text: "", type: "" });
     try {
-      const res  = await fetch(`${API_BASE_URL}/api/admin/staff`, {
+      const res  = await apiFetch(`${API_BASE_URL}/api/admin/staff`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({
           name:     form.name,
           email:    form.email,

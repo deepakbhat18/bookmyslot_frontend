@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/ClubEventAnalytics.css";
 
 export default function ClubEventAnalytics() {
@@ -8,9 +8,7 @@ export default function ClubEventAnalytics() {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/admin/event-analytics/${eventId}`, {
-      credentials: "include"
-    })
+    apiFetch(`${API_BASE_URL}/api/admin/event-analytics/${eventId}`)
       .then(res => res.json())
       .then(data => setEvent(data))
       .catch(err => console.error(err));

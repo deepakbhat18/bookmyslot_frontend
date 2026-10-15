@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/TeacherCalendar.css";
 
 export default function TeacherCalendar() {
@@ -12,7 +12,7 @@ export default function TeacherCalendar() {
 
   useEffect(() => {
     if (!teacherId) { navigate("/login"); return; }
-    fetch(`${API_BASE_URL}/api/calendar/teacher/${teacherId}`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/calendar/teacher/${teacherId}`)
       .then((res) => res.json())
       .then((data) => setEvents(Array.isArray(data) ? data : []))
       .catch(console.error)

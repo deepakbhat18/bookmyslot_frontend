@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/AdminClubs.css";
 
 export default function AdminClubs() {
@@ -20,7 +20,7 @@ export default function AdminClubs() {
   // GET /api/admin/clubs → raw List<Club> (NO ApiResponse wrapper)
   const loadClubs = () => {
     setLoading(true);
-    fetch(`${API_BASE_URL}/api/admin/clubs`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/clubs`)
       .then(r => r.json())
       .then(d => setClubs(Array.isArray(d) ? d : []))
       .catch(console.error)
@@ -39,10 +39,8 @@ export default function AdminClubs() {
     setCreating(true);
     setMsg({ text: "", type: "" });
     try {
-      const res  = await fetch(`${API_BASE_URL}/api/admin/clubs`, {
+      const res  = await apiFetch(`${API_BASE_URL}/api/admin/clubs`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify(form),
       });
       const data = await res.json();
@@ -65,9 +63,8 @@ export default function AdminClubs() {
   const toggleStatus = async (clubId, currentStatus) => {
     const next = currentStatus === "ACTIVE" ? "INACTIVE" : "ACTIVE";
     try {
-      await fetch(`${API_BASE_URL}/api/admin/clubs/${clubId}/status?status=${next}`, {
+      await apiFetch(`${API_BASE_URL}/api/admin/clubs/${clubId}/status?status=${next}`, {
         method: "PUT",
-        credentials: "include",
       });
       loadClubs();
     } catch {

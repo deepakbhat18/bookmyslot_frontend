@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/TeacherBookings.css";
 
 export default function TeacherBookings() {
@@ -12,7 +12,7 @@ export default function TeacherBookings() {
 
   useEffect(() => {
     if (!teacherId) { navigate("/login"); return; }
-    fetch(`${API_BASE_URL}/api/slots/teacher/${teacherId}`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/slots/teacher/${teacherId}`)
       .then((res) => res.json())
       .then((data) => setBookings(Array.isArray(data) ? data : []))
       .catch(console.error)

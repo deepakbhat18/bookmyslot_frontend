@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 
 export default function ViewEvent() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/events/${eventId}`, {
-      credentials: "include"
-    })
+    apiFetch(`${API_BASE_URL}/api/events/${eventId}`)
       .then(res => res.json())
       .then(setEvent);
   }, [eventId]);

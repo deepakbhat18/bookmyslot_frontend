@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/StudentEvents.css";
 
 export default function StudentEvents() {
@@ -11,7 +11,7 @@ export default function StudentEvents() {
   const [filterType, setFilterType] = useState("ALL");
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/public/events?page=0&size=50`)
+    apiFetch(`${API_BASE_URL}/api/public/events?page=0&size=50`)
       .then((res) => res.json())
       .then((data) => {
         const today = new Date(); today.setHours(0,0,0,0);

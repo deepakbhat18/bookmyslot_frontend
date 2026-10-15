@@ -4,7 +4,7 @@ import {
   BarChart, Bar, AreaChart, Area, PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend,
 } from "recharts";
-import { API_BASE_URL } from "../../api/config";
+import { apiFetch, API_BASE_URL } from "../../api/config";
 import "../../styles/ClubAnalytics.css";
 
 const COLORS = ["#6366f1", "#22c55e", "#f97316", "#ef4444", "#8b5cf6", "#0ea5e9"];
@@ -22,7 +22,7 @@ export default function ClubAnalytics({ clubId }) {
   const [loadingDetail, setLoadingDetail] = useState(false);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/admin/event-analytics`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/event-analytics`)
       .then(r => r.json())
       .then(d => setData(Array.isArray(d) ? d : []))
       .catch(console.error)
@@ -32,7 +32,7 @@ export default function ClubAnalytics({ clubId }) {
   const loadDetail = (eventId) => {
     if (selected?.eventId === eventId) { setSelected(null); return; }
     setLoadingDetail(true);
-    fetch(`${API_BASE_URL}/api/admin/event-analytics/${eventId}`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/admin/event-analytics/${eventId}`)
       .then(r => r.json())
       .then(setSelected)
       .catch(console.error)

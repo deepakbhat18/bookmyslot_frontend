@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/StudentMySlots.css";
 
 export default function StudentMySlots() {
@@ -11,7 +11,7 @@ export default function StudentMySlots() {
 
   useEffect(() => {
     if (!studentId) { navigate("/login"); return; }
-    fetch(`${API_BASE_URL}/api/slots/student/${studentId}`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/slots/student/${studentId}`)
       .then((res) => res.json())
       .then((data) => setSlots(Array.isArray(data) ? data : []))
       .catch(console.error)

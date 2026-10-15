@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/CreateEvent.css";
 
 export default function UploadPoster() {
@@ -26,9 +26,8 @@ export default function UploadPoster() {
     try {
       const fd = new FormData();
       fd.append("poster", file);
-      const res = await fetch(`${API_BASE_URL}/api/events/${eventId}/poster`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/events/${eventId}/poster`, {
         method: "POST",
-        credentials: "include",
         body: fd,
       });
       const data = await res.json();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/EventFeed.css";
 
 export default function EventFeed() {
@@ -9,7 +9,7 @@ export default function EventFeed() {
   const [hasMore, setHasMore] = useState(true);
   const todayStr = new Date().toLocaleDateString("en-CA");
   useEffect(() => {
-  fetch(`${API_BASE_URL}/api/public/events?page=0&size=50`)
+  apiFetch(`${API_BASE_URL}/api/public/events?page=0&size=50`)
     .then(res => res.json())
     .then(data => {
       const newEvents = data.content || [];

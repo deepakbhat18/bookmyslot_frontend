@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/CreateEvent.css";
 
 export default function CreateEvent() {
@@ -31,10 +31,8 @@ export default function CreateEvent() {
     setLoading(true);
     setMessage({ text: "", type: "" });
     try {
-      const res = await fetch(`${API_BASE_URL}/api/events`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/events`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         // EventCreateRequest exact fields
         body: JSON.stringify({
           title: form.title,

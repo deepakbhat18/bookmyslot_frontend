@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/CreateEvent.css";
 
 export default function EditEvent() {
@@ -20,7 +20,7 @@ export default function EditEvent() {
 
   useEffect(() => {
     // GET /api/events/{eventId} → EventResponse
-    fetch(`${API_BASE_URL}/api/events/${eventId}`, { credentials: "include" })
+    apiFetch(`${API_BASE_URL}/api/events/${eventId}`)
       .then((r) => r.json())
       .then((ev) => {
         setForm({
@@ -44,10 +44,8 @@ export default function EditEvent() {
     setLoading(true);
     setMessage({ text: "", type: "" });
     try {
-      const res = await fetch(`${API_BASE_URL}/api/events/${eventId}`, {
+      const res = await apiFetch(`${API_BASE_URL}/api/events/${eventId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
         body: JSON.stringify({
           title: form.title,
           description: form.description,

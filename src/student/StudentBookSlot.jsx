@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/StudentBookSlot.css";
 
 export default function StudentBookSlot() {
@@ -18,7 +18,7 @@ export default function StudentBookSlot() {
   const fetchSlots = async () => {
     setLoading(true); setMessage("");
     try {
-      const res = await fetch(`${API_BASE_URL}/api/slots/available?date=${date}`, { credentials: "include" });
+      const res = await apiFetch(`${API_BASE_URL}/api/slots/available?date=${date}`);
       const data = await res.json();
       setSlots(Array.isArray(data) ? data : []);
     } catch { setMessage("Failed to load slots"); setMessageType("error"); }
@@ -30,9 +30,8 @@ export default function StudentBookSlot() {
   const bookSlot = async (slotId) => {
     setBooking(slotId); setMessage("");
     try {
-      const res = await fetch(`${API_BASE_URL}/api/slots/book`, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        credentials: "include",
+      const res = await apiFetch(`${API_BASE_URL}/api/slots/book`, {
+        method: "POST",
         body: JSON.stringify({ slotId, studentId: Number(studentId) }),
       });
       const data = await res.json();

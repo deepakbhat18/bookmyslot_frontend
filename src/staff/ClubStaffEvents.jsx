@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../api/config";
+import { apiFetch, API_BASE_URL } from "../api/config";
 import "../styles/ClubStaffEvents.css";
 
 export default function ClubStaffEvents() {
@@ -13,9 +13,7 @@ export default function ClubStaffEvents() {
   useEffect(() => {
     if (!staffId) { navigate("/login"); return; }
     // ✅ Correct endpoint: /api/events/staff/{staffUserId}
-    fetch(`${API_BASE_URL}/api/events/staff/${staffId}`, {
-      credentials: "include",
-    })
+    apiFetch(`${API_BASE_URL}/api/events/staff/${staffId}`)
       .then((r) => r.json())
       .then((data) => setEvents(Array.isArray(data) ? data : []))
       .catch(console.error)

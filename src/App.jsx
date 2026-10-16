@@ -112,6 +112,7 @@ import EditEvent from "./staff/EditEvent";
 import UploadPoster from "./staff/UploadPoster";
 import ClubStaffEvents from "./staff/ClubStaffEvents";
 import StaffCheckIn from "./staff/StaffCheckIn";
+import EventAttendance from "./staff/EventAttendance";
 
 /* STUDENT */
 import StudentDashboard from "./student/StudentDashboard";
@@ -156,6 +157,7 @@ export default function App() {
         <Route path="/staff/events/:eventId/edit" element={<EditEvent />} />
         <Route path="/staff/events/:eventId/poster" element={<UploadPoster />} />
         <Route path="/staff/checkin" element={<StaffCheckIn />} />
+        <Route path="/staff/attendance" element={<EventAttendance />} />
 
         {/* STUDENT */}
         <Route path="/student" element={<StudentDashboard />} />

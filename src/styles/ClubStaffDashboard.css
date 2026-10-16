@@ -53,4 +53,5 @@
 
 .card-indigo { background: linear-gradient(135deg,#e0e7ff,#c7d2fe); color: #312e81; }
 .card-blue   { background: linear-gradient(135deg,#dbeafe,#bfdbfe); color: #1e3a8a; }
+.card-purple { background: linear-gradient(135deg,#f3e8ff,#e9d5ff); color: #581c87; }
 .card-green  { background: linear-gradient(135deg,#dcfce7,#bbf7d0); color: #14532d; }

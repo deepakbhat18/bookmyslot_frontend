@@ -8,6 +8,7 @@ export default function StaffDashboard() {
   const cards = [
     { icon: "➕", label: "Create Event",   sub: "Draft a new club event",           path: "/staff/events/new",  color: "card-indigo" },
     { icon: "📋", label: "My Events",      sub: "View, edit & manage all events",    path: "/staff/events",      color: "card-blue"   },
+    { icon: "👥", label: "Event Registrations & Attendance", sub: "View attendees, mark check-ins & export", path: "/staff/attendance", color: "card-purple" },
     { icon: "✅", label: "Check-In",       sub: "Scan QR codes at the event gate",   path: "/staff/checkin",     color: "card-green"  },
   ];
 

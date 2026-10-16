@@ -77,6 +77,7 @@ export default function Navbar() {
         {role === "CLUB" && (
           <>
             <span className={isActive("/staff/events")} onClick={() => navigate("/staff/events")}>Events</span>
+            <span className={isActive("/staff/attendance")} onClick={() => navigate("/staff/attendance")}>Event Registrations & Attendance</span>
             <span className={isActive("/staff/checkin")} onClick={() => navigate("/staff/checkin")}>Check-In</span>
             <span className={isActive("/staff")} onClick={() => navigate("/staff")}>Dashboard</span>
           </>

@@ -67,6 +67,9 @@ export default function ClubStaffEvents() {
                 {e.paid ? "PAID" : "FREE"}
               </span>
               <div className="event-row-actions">
+                <button onClick={() => navigate(`/staff/attendance?eventId=${e.eventId}`)} title="View registrations & mark attendance">
+                  📋 Registrations
+                </button>
                 <button onClick={() => navigate(`/staff/events/${e.eventId}/edit`)}>
                   ✏️ Edit
                 </button>
